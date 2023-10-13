@@ -1,6 +1,8 @@
 const Thought = require('../models/Thought');
 const User = require('../models/User');
-
+function total (){
+  
+}
 module.exports = {
   async getAllThoughts(req, res) {
     try {
@@ -30,7 +32,7 @@ module.exports = {
     try {
       const { thoughtText, username, userId } = req.body;
 
-      const newThought = await Thought.create({ thoughtText, createdBy: userId });
+      const newThought = await Thought.create({ thoughtText, username ,createdBy: userId });
 
       // Push the created thought's _id to the associated user's thoughts array field
       await User.findByIdAndUpdate(userId, { $push: { thoughts: newThought._id } });
